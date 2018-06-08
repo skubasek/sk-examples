@@ -3,8 +3,6 @@ package sk.examples.integer.sum;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sun.tools.internal.xjc.Language;
-
 /**
  * TODO: add 1 sentence description
  */
@@ -41,7 +39,7 @@ public class ProductOfThree {
 
         1, 2, 3
         on each int
-            if higher than current, replace
+            if higher than 1st, replace and break
 
 
          */
@@ -49,18 +47,21 @@ public class ProductOfThree {
         // [-11, -8, -5, 0, -2, 1]
         for (int n : ints) {
             // -8, idx 2
+            int prevHigh = n;
             for (int i = 1; i <= 3; i++) {
                 String highkey = "high_" + i;
                 String lowkey = "low_" + i;
 
-                high = map.getOrDefault(highkey, high); // -11
-                if (n > high) {
-                    map.put(highkey, n);
-
-                    // is n higher than the next high
-                    int high2 = map.getOrDefault()
-                    if ()
+                if (!map.containsKey(highkey)) {
+                    map.put(highkey, prevHigh);
                     break;
+                }
+
+                int val = map.get(highkey);
+                if (prevHigh > val) {
+                    map.put(highkey, prevHigh);
+                    prevHigh = val;
+                    continue;
                 }
 
 
